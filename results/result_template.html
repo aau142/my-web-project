@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>人生年表</title>
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      font-family: 'DotGothic16', sans-serif;
+      color: #fff;
+      overflow: hidden;
+    }
+    .frame-bg {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 440px;
+      height: 550px;
+    }
+    .timeline-content {
+      position: absolute;
+      left: 50%; top: 51.5%;
+      transform: translate(-50%, -50%);
+      width: 330px; height: 210px;
+      overflow: auto;
+      text-align: left;
+      color: #fff;
+      font-size: 1.1em;
+      line-height: 1.5;
+      white-space: pre-line;
+      z-index: 2;
+      padding: 12px;
+      background: transparent;
+    }
+  </style>
+</head>
+<body>
+  <img src="https://YOUR_HOST/PATH_TO_FRAME/frame.png" class="frame-bg" />
+  <div class="timeline-content">%TIMELINE_TEXT%</div>
+</body>
+</html>
