@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import maleImg from './male.png';
 import femaleImg from './female.png';
@@ -8,7 +8,16 @@ const Danjo = ({ setFormData }) => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
 
+    const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
+  const playClick = () => {
+    const audio = clickAudio.current;
+    audio.currentTime = 0;
+    audio.play();
+  };
+
   const handlePress = (target, route) => {
+    playClick();
     setPressed(target);
     setTimeout(() => {
       setPressed('');
