@@ -60,7 +60,7 @@ useEffect(() => {
   return (
     <div style={{ display: "flex", height: "100vh" }}>
       {/* 左側に movie.mp4 を常に表示 */}
-      <div style={{ flex: 0.8 }}>
+      <div style={{ flex: 1 }}>
         <video
           src="/movie.mp4"
           autoPlay
@@ -71,7 +71,7 @@ useEffect(() => {
       </div>
 
       {/* 右側は WebSocket によって qr2 または 7mac に切り替え */}
-      <div style={{ flex: 1.2 }}>
+      <div style={{ flex: 1 }}>
        {view === "qr2" ? <QR2 /> : <MacView url={timelineUrl} />}
       </div>
     </div>
