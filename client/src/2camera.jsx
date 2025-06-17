@@ -8,7 +8,13 @@ const Camera = () => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
 
+  const playClick = () => {
+    const audio = new Audio(process.env.PUBLIC_URL + '/sonota.mp3');
+    audio.play();
+  };
+  
   const handleTap = (target, route) => {
+    playClick();
     setPressed(target);
     setTimeout(() => {
       setPressed('');
