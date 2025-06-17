@@ -35,6 +35,7 @@ app.get('/', (req, res) => {
 });
 
 // Mac側の配信（`/mac`）
+app.use(express.static(path.join(__dirname, '../client-mac/build')));
 app.use('/mac', express.static(path.join(__dirname, '../client-mac/build')));
 app.get('/mac/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client-mac/build/index.html'));
