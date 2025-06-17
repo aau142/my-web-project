@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import agree from './monkey.png';
 import arrow from './arrow.png';
@@ -6,8 +6,17 @@ import arrow from './arrow.png';
 const Chui = () => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
+  
+    const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
+  const playClick = () => {
+    const audio = clickAudio.current;
+    audio.currentTime = 0;
+    audio.play();
+  };
 
   const handlePress = (target, route) => {
+    playClick();
     setPressed(target);
     setTimeout(() => {
       setPressed('');
