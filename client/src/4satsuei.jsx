@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import arrow from './arrow.png';
-import analyzeBtn from './analyze-btn.png';
+import arrow from './arrow.png'; // 戻るボタン画像
 
 const Satsuei = () => {
   const videoRef = useRef(null);
@@ -9,56 +8,44 @@ const Satsuei = () => {
   const [pressed, setPressed] = useState('');
   const navigate = useNavigate();
 
+  // ✅ 自動撮影処理
   const takePicture = useCallback(async () => {
-    if (!canvasRef.current || !videoRef.current) {
-      alert("カメラが初期化されていません");
-      return;
-    }
-
     const context = canvasRef.current.getContext('2d');
-    if (!context) {
-      alert("Canvas context が取得できません");
-      return;
-    }
-
     context.drawImage(videoRef.current, 0, 0, 640, 480);
     const imageData = canvasRef.current.toDataURL('image/jpeg');
 
-    try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/photo`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ image: imageData })
-      });
+    const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/photo`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ image: imageData })
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (response.ok && result.id) {
-        window.macClient?.send(JSON.stringify({ type: 'result', data: result.result }));
-        navigate(`/qr1?source=photo&id=${result.id}`, { state: { id: result.id } });
-      } else {
-        alert("解析に失敗しました");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("エラーが発生しました");
+    if (response.ok && result.id) {
+      window.macClient?.send(JSON.stringify({ type: 'result', data: result.result }));
+      navigate(`/qr1?source=photo&id=${result.id}`, { state: { id: result.id } });
+    } else {
+      alert("解析に失敗しました");
     }
   }, [navigate]);
 
+  // ✅ カメラ起動して、すぐ撮影
   useEffect(() => {
     if (!canvasRef.current || !videoRef.current) return;
 
     navigator.mediaDevices.getUserMedia({ video: true })
       .then((stream) => {
         videoRef.current.srcObject = stream;
-        videoRef.current.onloadedmetadata = () => {
-          videoRef.current.play();
-        };
+        // カメラ起動後に1秒だけ待ってから自動撮影
+        setTimeout(() => {
+          takePicture();
+        }, 1000);
       })
       .catch(() => {
         alert("カメラを起動できませんでした。設定を確認してください。");
       });
-  }, []);
+  }, [takePicture]);
 
   const handleBack = () => {
     setPressed('back');
@@ -83,7 +70,6 @@ const Satsuei = () => {
         src={arrow}
         alt="戻る"
         onTouchStart={handleBack}
-        onClick={handleBack}
         style={{
           position: 'absolute',
           width: '93px',
@@ -96,7 +82,7 @@ const Satsuei = () => {
         }}
       />
 
-      {/* スキャン文 */}
+      {/* スキャンしています（ふわふわ） */}
       <div className="scan-text" style={{
         position: 'absolute',
         width: '729px',
@@ -109,10 +95,10 @@ const Satsuei = () => {
         textAlign: 'center',
         color: '#000000'
       }}>
-        撮影して解析します
+        スキャンしています…
       </div>
 
-      {/* 撮影ビュー */}
+      {/* 撮影ビュー枠 */}
       <div style={{
         position: 'absolute',
         width: '837px',
@@ -140,21 +126,19 @@ const Satsuei = () => {
         />
       </div>
 
-      {/* 撮影ボタン */}
-      <img
-        src={analyzeBtn}
-        alt="撮影する"
-        onTouchStart={takePicture}
-        onClick={takePicture}
-        style={{
-          position: 'absolute',
-          width: '600px',
-          left: 'calc(50% - 300px)',
-          bottom: '100px',
-          cursor: 'pointer',
-          zIndex: 2
-        }}
-      />
+      {/* 「少し待ってください」表示 */}
+      <div style={{
+        position: 'absolute',
+        top: '1100px',
+        left: '0',
+        width: '100%',
+        textAlign: 'center',
+        fontSize: '80px',
+        color: '#000000',
+        zIndex: 2
+      }}>
+        めっちゃ待ってください
+      </div>
 
       <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
     </div>
