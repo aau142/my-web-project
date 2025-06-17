@@ -10,13 +10,16 @@ import { analyzeText, analyzeImageBuffer, bucket } from './api.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 // HTTPS 証明書の読み込み（絶対パスに修正）
-const key = fs.readFileSync(path.join(__dirname, 'localhost.key'));
-const cert = fs.readFileSync(path.join(__dirname, 'localhost.crt'));
+const key = fs.readFileSync(path.join(__dirname, 'cert/key.pem'));
+const cert = fs.readFileSync(path.join(__dirname, 'cert/cert.pem'));
+console.log("🔧 key, cert ファイル読み込み済み？", !!key, !!cert);
 const server = https.createServer({ key, cert }, app);
 
 const wss = new WebSocketServer({ server });
@@ -94,7 +97,8 @@ wss.on('connection', (ws) => {
 
 
 // サーバー起動
-const PORT = 3000;
-server.listen(PORT, () => {
-  console.log(`✅ HTTPS server running at https://172.20.10.2:${PORT}`);
+const PORT = 443;
+
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`✅ HTTPS server running at https://0.0.0.0:${PORT}`);
 });
