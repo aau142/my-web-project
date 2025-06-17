@@ -30,17 +30,19 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // ✅ 静的ファイルの公開設定
 app.use(express.static(path.join(__dirname, '../client-mac/build')));
-app.use('/mac', express.static(path.join(__dirname, '../client-mac/build')));
-app.use('/', express.static(path.join(__dirname, '../client/build')));
 
 // ✅ HTMLファイルルーティング（React用）
+// --- iPad側（client） ---
+app.use('/', express.static(path.join(__dirname, '../client/build')));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build/index.html'));
+});
+
+// --- Mac側（client-mac） ---
+app.use('/mac', express.static(path.join(__dirname, '../client-mac/build')));
 app.get('/mac/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client-mac/build/index.html'));
 });
-
-app.get('/', (req, res) => {
-   res.sendFile(path.join(__dirname, '../client/build/index.html'));
- });
 
 
 // ✅ /api/analyze（photoの外）
