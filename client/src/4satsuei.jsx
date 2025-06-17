@@ -31,21 +31,19 @@ const Satsuei = () => {
   }, [navigate]);
 
   // ✅ カメラ起動して、すぐ撮影
-  useEffect(() => {
-    if (!canvasRef.current || !videoRef.current) return;
+  // 🔽 useEffect の中身だけ変更
+useEffect(() => {
+  if (!canvasRef.current || !videoRef.current) return;
 
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then((stream) => {
-        videoRef.current.srcObject = stream;
-        // カメラ起動後に1秒だけ待ってから自動撮影
-        setTimeout(() => {
-          takePicture();
-        }, 1000);
-      })
-      .catch(() => {
-        alert("カメラを起動できませんでした。設定を確認してください。");
-      });
-  }, [takePicture]);
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then((stream) => {
+      videoRef.current.srcObject = stream;
+    })
+    .catch(() => {
+      alert("カメラを起動できませんでした。設定を確認してください。");
+    });
+}, []);
+
 
   const handleBack = () => {
     setPressed('back');
@@ -139,6 +137,28 @@ const Satsuei = () => {
       }}>
         めっちゃ待ってください
       </div>
+      // 🔽 return 内の最下部にボタン追加（canvas のすぐ上）
+<button
+  onClick={takePicture}
+  style={{
+    position: 'absolute',
+    bottom: '100px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    fontSize: '48px',
+    backgroundColor: '#f57c2d',
+    color: 'white',
+    padding: '20px 40px',
+    border: 'none',
+    borderRadius: '20px',
+    fontFamily: 'DotGothic16',
+    cursor: 'pointer',
+    zIndex: 3
+  }}
+>
+  撮影する
+</button>
+
 
       <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
     </div>
