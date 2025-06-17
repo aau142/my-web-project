@@ -9,7 +9,7 @@ const Start = () => {
   const clickAudioRef = useRef(null);
 
   useEffect(() => {
-    const socket = new WebSocket('wss://0.0.0.0:443');
+    const socket = new WebSocket('wss://147.78.244.100');
     socket.onopen = () => {
       socket.send(JSON.stringify({ type: 'showQR2' }));
     };
