@@ -84,7 +84,7 @@ const Chui = () => {
         width: '593px',
         height: '184px',
         left: '213px',
-        top: '601px',
+        top: '541px',
         fontSize: '32px',
         fontWeight: 1000,
         lineHeight: '40px',
