@@ -45,15 +45,13 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'black', // ←これ重要！
-    overflow: 'hidden',
+    background: 'black', // ←これ重要！
   },
   
   genFrame: {
     width: '95%',
     height: 'auto',
     objectFit: 'contain',
-    backgroundColor: 'black', 
   },
 };
 
