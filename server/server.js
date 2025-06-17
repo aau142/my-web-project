@@ -29,6 +29,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // ✅ 静的ファイルの公開設定
+app.use(express.static(path.join(__dirname, '../client-mac/build')));
 app.use('/mac', express.static(path.join(__dirname, '../client-mac/build')));
 // app.use('/', express.static(path.join(__dirname, '../client/build')));
 
