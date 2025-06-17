@@ -16,7 +16,7 @@ const QR1 = ({ formData }) => {
 
     const generateRandomID = () => Math.random().toString(36).substring(2, 10);
 
-    const socket = new WebSocket("wss://0.0.0.0:443");
+    const socket = new WebSocket("wss://147.78.244.100");
 socket.onopen = () => {
   const id = idFromCamera;
   if (source === 'photo' && id) {
