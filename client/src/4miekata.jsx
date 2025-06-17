@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef} from 'react';
 import { useNavigate } from 'react-router-dom';
 import cuteIcon from './cute.png';
 import coolIcon from './cool.png';
@@ -9,8 +9,17 @@ import backArrow from './arrow.png';
 const Miekata = ({ setFormData }) => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
+  
+    const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
+  const playClick = () => {
+    const audio = clickAudio.current;
+    audio.currentTime = 0;
+    audio.play();
+  };
 
   const handlePress = (target, value) => {
+    playClick();
     setPressed(target);
     setTimeout(() => {
       setPressed('');
