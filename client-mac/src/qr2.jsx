@@ -49,7 +49,7 @@ const styles = {
   },
   
   genFrame: {
-    width: '95%',
+    width: '100%',
     height: 'auto',
     objectFit: 'contain',
   },
