@@ -37,7 +37,7 @@ const styles = {
     background: 'black',
   },
   left: {
-    flex: 1,
+    flex: 0.8,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -51,7 +51,7 @@ const styles = {
     borderRadius: '1vw',
   },
   right: {
-    flex: 1,
+    flex: 1.2,
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
