@@ -8,8 +8,11 @@ const Camera = () => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
 
+  const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
   const playClick = () => {
-    const audio = new Audio(process.env.PUBLIC_URL + '/sonota.mp3');
+    const audio = clickAudio.current;
+    audio.currentTime = 0;
     audio.play();
   };
   
