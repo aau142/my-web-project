@@ -7,7 +7,7 @@ const AppMac = () => {
   const [timelineUrl, setTimelineUrl] = useState("");
 
   useEffect(() => {
-    const ws = new WebSocket("wss://172.20.10.2:3000"); // WebSocketサーバーのURLを環境に合わせて変更
+    const ws = new WebSocket("wss://147.78.244.100:443"); // WebSocketサーバーのURLを環境に合わせて変更
 
 ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
