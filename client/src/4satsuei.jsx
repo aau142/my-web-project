@@ -74,22 +74,6 @@ const Satsuei = () => {
       position: 'relative',
       fontFamily: 'DotGothic16'
     }}>
-      {/* 戻るボタン */}
-      <img
-        src={arrow}
-        alt="戻る"
-        onTouchStart={handleBack}
-        style={{
-          position: 'absolute',
-          width: '93px',
-          height: '81.37px',
-          left: '59px',
-          top: '67px',
-          cursor: 'pointer',
-          transform: pressed === 'back' ? 'scale(0.9)' : 'scale(1)',
-          transition: 'transform 0.05s ease-out'
-        }}
-      />
 
       {/* スキャンしています（ふわふわ） */}
       <div className="scan-text" style={{
@@ -133,20 +117,6 @@ const Satsuei = () => {
             borderRadius: '50px'
           }}
         />
-      </div>
-
-      {/* 「少し待ってください」表示 */}
-      <div style={{
-        position: 'absolute',
-        top: '1100px',
-        left: '0',
-        width: '100%',
-        textAlign: 'center',
-        fontSize: '80px',
-        color: '#000000',
-        zIndex: 2
-      }}>
-        めっちゃ待ってください
       </div>
 
       <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
