@@ -48,8 +48,7 @@ const styles = {
     backgroundColor: 'black', // ←これ重要！
     overflow: 'hidden',
   },
-
-  },
+  
   genFrame: {
     width: '95%',
     height: 'auto',
