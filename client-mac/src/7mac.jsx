@@ -5,8 +5,8 @@ const SevenMac = ({ url }) => {
   return (
     <div style={{
       position: 'relative',
-      width: '100%',
-      height: '100%',
+    width: '100vw',
+    height: '100vh',
       backgroundColor: 'black',
       fontFamily: 'DotGothic16',
       overflow: 'hidden',
