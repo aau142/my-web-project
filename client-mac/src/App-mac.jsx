@@ -9,35 +9,29 @@ const AppMac = () => {
 
 
 useEffect(() => {
-  // ✅ BGMの再生
   const audio = new Audio(process.env.PUBLIC_URL + '/GB-Action-D06-1(Stage4).mp3');
   audio.loop = true;
   audio.volume = 0.5;
-  audio.play();
   audioRef.current = audio;
-  
-    const ws = new WebSocket("wss://147.78.244.100");
-  
-  ws.onmessage = (event) => {
-    const data = JSON.parse(event.data);
-    console.log("WebSocket受信:", data);
-    if (data.type === "show7mac") {
-      setTimelineUrl(data.url || "");
-      setView("7mac");
-    } else if (data.type === "showQR2") {
-      setView("qr2");
-    }
+
+  const tryPlay = () => {
+    audio.play().catch(err => {
+      console.warn('自動再生できなかった:', err);
+    });
+    document.removeEventListener('click', tryPlay);
   };
 
-  ws.onerror = (err) => {
-    console.error("WebSocketエラー:", err);
-  };
+  document.addEventListener('click', tryPlay);
 
-  // ✅ クリーンアップ（音とソケット両方）
+  // WebSocket処理（そのままでOK）
+  const ws = new WebSocket("wss://147.78.244.100");
+  ws.onmessage = (event) => { /* ... */ };
+
   return () => {
     audio.pause();
     audio.currentTime = 0;
     ws.close();
+    document.removeEventListener('click', tryPlay);
   };
 }, []);
 
