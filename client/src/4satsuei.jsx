@@ -10,9 +10,17 @@ const Satsuei = () => {
   const navigate = useNavigate();
 
   const takePicture = useCallback(async () => {
-    if (!canvasRef.current || !videoRef.current) return;
+    if (!canvasRef.current || !videoRef.current) {
+      alert("カメラが初期化されていません");
+      return;
+    }
 
     const context = canvasRef.current.getContext('2d');
+    if (!context) {
+      alert("Canvas context が取得できません");
+      return;
+    }
+
     context.drawImage(videoRef.current, 0, 0, 640, 480);
     const imageData = canvasRef.current.toDataURL('image/jpeg');
 
@@ -32,6 +40,7 @@ const Satsuei = () => {
         alert("解析に失敗しました");
       }
     } catch (error) {
+      console.error(error);
       alert("エラーが発生しました");
     }
   }, [navigate]);
@@ -42,6 +51,9 @@ const Satsuei = () => {
     navigator.mediaDevices.getUserMedia({ video: true })
       .then((stream) => {
         videoRef.current.srcObject = stream;
+        videoRef.current.onloadedmetadata = () => {
+          videoRef.current.play();
+        };
       })
       .catch(() => {
         alert("カメラを起動できませんでした。設定を確認してください。");
@@ -71,6 +83,7 @@ const Satsuei = () => {
         src={arrow}
         alt="戻る"
         onTouchStart={handleBack}
+        onClick={handleBack}
         style={{
           position: 'absolute',
           width: '93px',
@@ -132,6 +145,7 @@ const Satsuei = () => {
         src={analyzeBtn}
         alt="撮影する"
         onTouchStart={takePicture}
+        onClick={takePicture}
         style={{
           position: 'absolute',
           width: '600px',
