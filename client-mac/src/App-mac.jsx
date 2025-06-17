@@ -9,32 +9,53 @@ const AppMac = () => {
 
 
 useEffect(() => {
+  // ✅ BGMの準備
   const audio = new Audio(process.env.PUBLIC_URL + '/GB-Action-D06-1(Stage4).mp3');
   audio.loop = true;
   audio.volume = 0.5;
   audioRef.current = audio;
 
+  // ✅ ユーザー操作で初回再生許可（クリックで音スタート）
   const tryPlay = () => {
     audio.play().catch(err => {
-      console.warn('自動再生できなかった:', err);
+      console.warn('音声自動再生がブロックされました:', err);
     });
     document.removeEventListener('click', tryPlay);
   };
-
   document.addEventListener('click', tryPlay);
 
-  // WebSocket処理（そのままでOK）
-  const ws = new WebSocket("wss://147.78.244.100");
-  ws.onmessage = (event) => { /* ... */ };
+  // ✅ WebSocket 接続
+  let ws;
+  try {
+    ws = new WebSocket("wss://147.78.244.100");
 
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("WebSocket受信:", data);
+      if (data.type === "show7mac") {
+        setTimelineUrl(data.url || "");
+        setView("7mac");
+      } else if (data.type === "showQR2") {
+        setView("qr2");
+      }
+    };
+
+    ws.onerror = (err) => {
+      console.error("WebSocketエラー:", err);
+    };
+
+  } catch (e) {
+    console.error("WebSocket接続失敗:", e);
+  }
+
+  // ✅ クリーンアップ処理（離脱時）
   return () => {
+    if (ws) ws.close();
     audio.pause();
     audio.currentTime = 0;
-    ws.close();
     document.removeEventListener('click', tryPlay);
   };
 }, []);
-
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
