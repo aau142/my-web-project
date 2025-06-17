@@ -9,43 +9,35 @@ const AppMac = () => {
 
 
 useEffect(() => {
-    const audio = new Audio(process.env.PUBLIC_URL + '/GB-Action-D06-1(Stage4).mp3');
+  // ✅ BGMの再生
+  const audio = new Audio(process.env.PUBLIC_URL + '/GB-Action-D06-1(Stage4).mp3');
   audio.loop = true;
-  audio.volume = 0.5; // 音量調整（0.0〜1.0）
+  audio.volume = 0.5;
   audio.play();
   audioRef.current = audio;
+  
+    const ws = new WebSocket("wss://147.78.244.100");
+  
+  ws.onmessage = (event) => {
+    const data = JSON.parse(event.data);
+    console.log("WebSocket受信:", data);
+    if (data.type === "show7mac") {
+      setTimelineUrl(data.url || "");
+      setView("7mac");
+    } else if (data.type === "showQR2") {
+      setView("qr2");
+    }
+  };
 
+  ws.onerror = (err) => {
+    console.error("WebSocketエラー:", err);
+  };
+
+  // ✅ クリーンアップ（音とソケット両方）
   return () => {
     audio.pause();
     audio.currentTime = 0;
-  };
-}, 
-  let ws;
-
-  try {
-    ws = new WebSocket("wss://147.78.244.100");
-
-    ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      console.log("WebSocket受信:", data);
-      if (data.type === "show7mac") {
-        setTimelineUrl(data.url || "");
-        setView("7mac");
-      } else if (data.type === "showQR2") {
-        setView("qr2");
-      }
-    };
-
-    ws.onerror = (err) => {
-      console.error("WebSocketエラー:", err);
-    };
-
-  } catch (e) {
-    console.error("WebSocket接続失敗:", e);
-  }
-
-  return () => {
-    if (ws) ws.close();
+    ws.close();
   };
 }, []);
 
