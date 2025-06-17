@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import arrow from './arrow.png';
-import analyzeBtn from './analyze-btn.png'; // 撮影ボタンの画像（既にsrcにある画像を想定）
+import analyzeBtn from './analyze-btn.png';
 
 const Satsuei = () => {
   const videoRef = useRef(null);
@@ -10,23 +10,29 @@ const Satsuei = () => {
   const navigate = useNavigate();
 
   const takePicture = useCallback(async () => {
+    if (!canvasRef.current || !videoRef.current) return;
+
     const context = canvasRef.current.getContext('2d');
     context.drawImage(videoRef.current, 0, 0, 640, 480);
     const imageData = canvasRef.current.toDataURL('image/jpeg');
 
-    const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/photo`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ image: imageData })
-    });
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/photo`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image: imageData })
+      });
 
-    const result = await response.json();
+      const result = await response.json();
 
-    if (response.ok && result.id) {
-      window.macClient?.send(JSON.stringify({ type: 'result', data: result.result }));
-      navigate(`/qr1?source=photo&id=${result.id}`, { state: { id: result.id } });
-    } else {
-      alert("解析に失敗しました");
+      if (response.ok && result.id) {
+        window.macClient?.send(JSON.stringify({ type: 'result', data: result.result }));
+        navigate(`/qr1?source=photo&id=${result.id}`, { state: { id: result.id } });
+      } else {
+        alert("解析に失敗しました");
+      }
+    } catch (error) {
+      alert("エラーが発生しました");
     }
   }, [navigate]);
 
@@ -93,7 +99,7 @@ const Satsuei = () => {
         撮影して解析します
       </div>
 
-      {/* 撮影ビュー枠 */}
+      {/* 撮影ビュー */}
       <div style={{
         position: 'absolute',
         width: '837px',
@@ -125,7 +131,7 @@ const Satsuei = () => {
       <img
         src={analyzeBtn}
         alt="撮影する"
-        onClick={takePicture}
+        onTouchStart={takePicture}
         style={{
           position: 'absolute',
           width: '600px',
