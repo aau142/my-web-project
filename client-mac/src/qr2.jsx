@@ -59,8 +59,8 @@ const styles = {
     background: 'black',
   },
   frame: {
-    width: '90%',
-    height: '90%',
+    width: '100%',
+    height: '100%',
     objectFit: 'contain',
     position: 'absolute',
     left: '50%',
