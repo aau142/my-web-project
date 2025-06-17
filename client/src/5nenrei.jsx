@@ -66,7 +66,7 @@ const Nenrei = ({ setFormData }) => {
         textAlign: 'center',
         color: '#000000',
       }}>
-        他者から何歳くらいに見える<br />と言われますか？
+        他者から何歳くらいに<br />見えると言われますか？
       </div>
 
       {/* 年齢ボックス */}
