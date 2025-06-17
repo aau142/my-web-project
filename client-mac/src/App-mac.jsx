@@ -6,25 +6,36 @@ const AppMac = () => {
   const [view, setView] = useState("qr2"); // 初期はQR2（生成中画面）
   const [timelineUrl, setTimelineUrl] = useState("");
 
-  useEffect(() => {
-    const ws = new WebSocket("wss://147.78.244.100:443"); // WebSocketサーバーのURLを環境に合わせて変更
+useEffect(() => {
+  let ws;
 
-ws.onmessage = (event) => {
-  const data = JSON.parse(event.data);
-  console.log("WebSocket受信:", data);
-  if (data.type === "show7mac") {
-    setTimelineUrl(data.url || "");
-    setView("7mac");
-  } else if (data.type === "showQR2") {
-    setView("qr2");
-  }
-};
+  try {
+    ws = new WebSocket("wss://0.0.0.0:443");
 
-
-    return () => {
-      ws.close();
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log("WebSocket受信:", data);
+      if (data.type === "show7mac") {
+        setTimelineUrl(data.url || "");
+        setView("7mac");
+      } else if (data.type === "showQR2") {
+        setView("qr2");
+      }
     };
-  }, []);
+
+    ws.onerror = (err) => {
+      console.error("WebSocketエラー:", err);
+    };
+
+  } catch (e) {
+    console.error("WebSocket接続失敗:", e);
+  }
+
+  return () => {
+    if (ws) ws.close();
+  };
+}, []);
+
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
