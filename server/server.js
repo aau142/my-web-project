@@ -28,17 +28,13 @@ app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-// ✅ 静的ファイルの公開設定
-app.use(express.static(path.join(__dirname, '../client-mac/build')));
-
-// ✅ HTMLファイルルーティング（React用）
-// --- iPad側（client） ---
+// iPad側の配信（ルート `/`）
 app.use('/', express.static(path.join(__dirname, '../client/build')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-// --- Mac側（client-mac） ---
+// Mac側の配信（`/mac`）
 app.use('/mac', express.static(path.join(__dirname, '../client-mac/build')));
 app.get('/mac/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client-mac/build/index.html'));
