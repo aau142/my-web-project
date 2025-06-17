@@ -1,5 +1,5 @@
 import React from 'react';
-import frameImg from './frame1.png'; // パスは適宜修正
+import frameImg from './ew.png'; // パスは適宜修正
 
 const SevenMac = ({ url }) => {
   return (
@@ -30,11 +30,11 @@ const SevenMac = ({ url }) => {
         title="年表"
         style={{
           position: 'absolute',
-          top: '50%',           // 位置微調整（画像中央のグレー枠に合わせて）
+          top: '55%',           // 位置微調整（画像中央のグレー枠に合わせて）
           left: '55%',
           transform: 'translate(-50%, -50%)',
-          width: '62%',
-          height: '47%',
+          width: '65%',
+          height: '60%',
           border: 'none',
           background: 'white',
           zIndex: 1,
