@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import arrow from './arrow.png';
 import qrFrame from './qrframe.png';
@@ -9,6 +9,13 @@ const QR1 = ({ formData }) => {
   const [searchParams] = useSearchParams();
   const [pressed, setPressed] = useState('');
   const navigate = useNavigate();
+  const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
+  const playClick = () => {
+  const audio = clickAudio.current;
+  audio.currentTime = 0;
+  audio.play();
+};
 
   useEffect(() => {
     const source = searchParams.get('source'); // ← photo or null
@@ -65,6 +72,7 @@ const sendToOpenAI = async () => {
   }, [formData, searchParams]);
 
   const handlePress = (key, pathOrStep) => {
+    playClick(); 
     setPressed(key);
     setTimeout(() => {
       setPressed('');
