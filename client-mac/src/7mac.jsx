@@ -1,17 +1,17 @@
 import React from 'react';
-import frameImg from './frame1.png'; // ← パスは適宜修正
+import frameImg from './frame1.png'; // パスは適宜修正
 
 const SevenMac = ({ url }) => {
   return (
     <div style={{
       position: 'relative',
-      width: '100vw',
-      height: '100vh',
+      width: '100%',
+      height: '100%',
       backgroundColor: 'black',
       fontFamily: 'DotGothic16',
       overflow: 'hidden',
     }}>
-      {/* 吹き出し画像 */}
+      {/* フレーム画像（吹き出し） */}
       <img
         src={frameImg}
         alt="フレーム"
@@ -24,21 +24,22 @@ const SevenMac = ({ url }) => {
         }}
       />
 
-      {/* iframe */}
+      {/* iframe を適切な位置に */}
       <iframe
         src={url}
         title="年表"
         style={{
           position: 'absolute',
-          top: '38%',   // 画像内のグレー部分に合わせて調整
+          top: '48%',           // 位置微調整（画像中央のグレー枠に合わせて）
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: '55%',
-          height: '48%',
+          width: '62%',
+          height: '47%',
           border: 'none',
           background: 'white',
           zIndex: 1,
-          borderRadius: '10px',
+          borderRadius: '8px',
+          overflow: 'hidden'
         }}
       />
     </div>
