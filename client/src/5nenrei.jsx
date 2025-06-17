@@ -85,7 +85,7 @@ const Nenrei = ({ setFormData }) => {
         height: '93px',
         left: '606px',
         top: '687px',
-        fontSize: '62px',
+        fontSize: '60px',
         fontWeight: 'bold',
         lineHeight: '93px',
         textAlign: 'center',
