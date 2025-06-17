@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ageBox from './age-box.png';
 import analyzeBtn from './analyze-btn.png';
@@ -9,7 +9,16 @@ const Nenrei = ({ setFormData }) => {
   const [age, setAge] = useState(20);
   const [pressed, setPressed] = useState('');
 
+    const clickAudio = useRef(new Audio(process.env.PUBLIC_URL + '/sonota.mp3'));
+
+  const playClick = () => {
+    const audio = clickAudio.current;
+    audio.currentTime = 0;
+    audio.play();
+  };
+
   const handlePress = (target) => {
+    playClick();
     setPressed(target);
     setTimeout(() => {
       setPressed('');
