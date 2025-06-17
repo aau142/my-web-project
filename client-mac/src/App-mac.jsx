@@ -10,7 +10,7 @@ useEffect(() => {
   let ws;
 
   try {
-    ws = new WebSocket("wss://0.0.0.0:443");
+    ws = new WebSocket("wss://147.78.244.100");
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
