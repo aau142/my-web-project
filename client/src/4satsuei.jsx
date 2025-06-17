@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import arrow from './arrow.png'; // 戻るボタン画像
+import arrow from './arrow.png';
+import analyzeBtn from './analyze-btn.png'; // 撮影ボタンの画像（既にsrcにある画像を想定）
 
 const Satsuei = () => {
   const videoRef = useRef(null);
@@ -8,7 +9,6 @@ const Satsuei = () => {
   const [pressed, setPressed] = useState('');
   const navigate = useNavigate();
 
-  // ✅ 自動撮影処理
   const takePicture = useCallback(async () => {
     const context = canvasRef.current.getContext('2d');
     context.drawImage(videoRef.current, 0, 0, 640, 480);
@@ -30,20 +30,17 @@ const Satsuei = () => {
     }
   }, [navigate]);
 
-  // ✅ カメラ起動して、すぐ撮影
-  // 🔽 useEffect の中身だけ変更
-useEffect(() => {
-  if (!canvasRef.current || !videoRef.current) return;
+  useEffect(() => {
+    if (!canvasRef.current || !videoRef.current) return;
 
-  navigator.mediaDevices.getUserMedia({ video: true })
-    .then((stream) => {
-      videoRef.current.srcObject = stream;
-    })
-    .catch(() => {
-      alert("カメラを起動できませんでした。設定を確認してください。");
-    });
-}, []);
-
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then((stream) => {
+        videoRef.current.srcObject = stream;
+      })
+      .catch(() => {
+        alert("カメラを起動できませんでした。設定を確認してください。");
+      });
+  }, []);
 
   const handleBack = () => {
     setPressed('back');
@@ -80,7 +77,7 @@ useEffect(() => {
         }}
       />
 
-      {/* スキャンしています（ふわふわ） */}
+      {/* スキャン文 */}
       <div className="scan-text" style={{
         position: 'absolute',
         width: '729px',
@@ -93,7 +90,7 @@ useEffect(() => {
         textAlign: 'center',
         color: '#000000'
       }}>
-        スキャンしています…
+        撮影して解析します
       </div>
 
       {/* 撮影ビュー枠 */}
@@ -124,41 +121,20 @@ useEffect(() => {
         />
       </div>
 
-      {/* 「少し待ってください」表示 */}
-      <div style={{
-        position: 'absolute',
-        top: '1100px',
-        left: '0',
-        width: '100%',
-        textAlign: 'center',
-        fontSize: '80px',
-        color: '#000000',
-        zIndex: 2
-      }}>
-        めっちゃ待ってください
-      </div>
-      // 🔽 return 内の最下部にボタン追加（canvas のすぐ上）
-<button
-  onClick={takePicture}
-  style={{
-    position: 'absolute',
-    bottom: '100px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    fontSize: '48px',
-    backgroundColor: '#f57c2d',
-    color: 'white',
-    padding: '20px 40px',
-    border: 'none',
-    borderRadius: '20px',
-    fontFamily: 'DotGothic16',
-    cursor: 'pointer',
-    zIndex: 3
-  }}
->
-  撮影する
-</button>
-
+      {/* 撮影ボタン */}
+      <img
+        src={analyzeBtn}
+        alt="撮影する"
+        onClick={takePicture}
+        style={{
+          position: 'absolute',
+          width: '600px',
+          left: 'calc(50% - 300px)',
+          bottom: '100px',
+          cursor: 'pointer',
+          zIndex: 2
+        }}
+      />
 
       <canvas ref={canvasRef} width="640" height="480" style={{ display: 'none' }} />
     </div>
