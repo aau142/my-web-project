@@ -48,11 +48,6 @@ const styles = {
     background: 'black', // ←これ重要！
   },
   
-  genFrame: {
-    width: '100%',
-    height: 'auto',
-    objectFit: 'contain',
-  },
 };
 
 export default QR2;
