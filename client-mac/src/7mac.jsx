@@ -17,8 +17,8 @@ const SevenMac = ({ url }) => {
         alt="フレーム"
         style={{
           position: 'absolute',
-          width: '100%',
-          height: '100%',
+    width: '100vw',
+    height: '100vh',
           objectFit: 'contain',
           zIndex: 0,
         }}
