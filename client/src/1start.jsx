@@ -18,7 +18,7 @@ const Start = () => {
 
   // ✅ 音声を事前にロードしておく（iOS最速対策）
   useEffect(() => {
-    const audio = new Audio('/click.mp3');
+    const audio = new Audio('/first.mp3');
     clickAudioRef.current = audio;
     // トリガーがあるまではplayできないので、ここでは設定だけ
   }, []);
