@@ -14,6 +14,11 @@ const Satsuei = () => {
     context.drawImage(videoRef.current, 0, 0, 640, 480);
     const imageData = canvasRef.current.toDataURL('image/jpeg');
 
+      const forceTimeout = setTimeout(() => {
+    navigate('/qr1?source=photo&timeout=true');
+  }, 4000);
+    
+  try {
     const response = await fetch(`${process.env.REACT_APP_API_BASE}/api/photo`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -23,13 +28,17 @@ const Satsuei = () => {
     const result = await response.json();
 
     if (response.ok && result.id) {
+      clearTimeout(forceTimeout); // ✅ 成功したら強制遷移キャンセル
       window.macClient?.send(JSON.stringify({ type: 'result', data: result.result }));
       navigate(`/qr1?source=photo&id=${result.id}`, { state: { id: result.id } });
     } else {
       alert("解析に失敗しました");
     }
-  }, [navigate]);
-
+  } catch (err) {
+    alert("エラーが発生しました");
+  }
+}, [navigate]);
+  
   // ✅ カメラ起動して、すぐ撮影
   useEffect(() => {
     if (!canvasRef.current || !videoRef.current) return;
