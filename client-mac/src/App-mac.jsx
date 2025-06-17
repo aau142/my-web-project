@@ -1,12 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import QR2 from "./qr2";
 import MacView from "./7mac";
 
 const AppMac = () => {
   const [view, setView] = useState("qr2"); // 初期はQR2（生成中画面）
   const [timelineUrl, setTimelineUrl] = useState("");
+  const audioRef = useRef(null);
+
 
 useEffect(() => {
+    const audio = new Audio(process.env.PUBLIC_URL + '/GB-Action-D06-1(Stage4).mp3');
+  audio.loop = true;
+  audio.volume = 0.5; // 音量調整（0.0〜1.0）
+  audio.play();
+  audioRef.current = audio;
+
+  return () => {
+    audio.pause();
+    audio.currentTime = 0;
+  };
+}, 
   let ws;
 
   try {
