@@ -69,37 +69,33 @@ ${inputText}`;
   <title>人生年表</title>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <style>
-  body {
-    margin: 0;
-    padding: 40px 0;
-    font-family: 'DotGothic16', sans-serif;
-    display: flex;
-    justify-content: center;
-  }
+body {
+  margin: 40px;
+  padding: 0;
+  font-family: 'DotGothic16', sans-serif;
+  color: black;
+}
 
-    .paper {
-      background: white;
-      width: 620px;
-      padding: 60px 50px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      box-sizing: border-box;
-    }
-    .title {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .title .small {
-      font-size: 20px;
-    }
-    .title .main {
-      font-size: 36px;
-      font-weight: bold;
-    }
-    .dashed-line {
-      border-bottom: 1px dotted #000;
-      margin: 10px 0 20px 0;
-    }
-    .label-row {
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title .small {
+  font-size: 20px;
+}
+
+.title .main {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.dashed-line {
+  border-bottom: 1px dotted #000;
+  margin: 10px 0 20px 0;
+}
+
+.label-row {
   display: flex;
   font-size: 16px;
   margin-bottom: 10px;
@@ -109,7 +105,6 @@ ${inputText}`;
 .label-row div:first-child {
   width: 80px;
   font-weight: bold;
-    flex: 1;
   text-align: left;
   padding-left: 20px;
 }
@@ -119,10 +114,12 @@ ${inputText}`;
   text-align: right;
   padding-right: 200px;
 }
-    .timeline {
-      font-size: 16px;
-      line-height: 1.6;
-    }
+
+.timeline {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
 .entry {
   display: flex;
   margin-bottom: 10px;
@@ -133,46 +130,48 @@ ${inputText}`;
 .entry .age {
   width: 80px;
   font-weight: bold;
-    text-align: left;     /* ← 右寄せ */
-  padding-left: 30px; 
+  text-align: left;
+  padding-left: 30px;
 }
 
 .entry .desc {
   flex: 1;
 }
-    .footer {
-      margin-top: 30px;
-      border-top: 1px dotted #000;
-      padding-top: 10px;
-      text-align: center;
-      font-size: 14px;
-    }
-    .date {
-      text-align: right;
-      font-size: 14px;
-      margin-top: 10px;
-    }
+
+.footer {
+  margin-top: 30px;
+  border-top: 1px dotted #000;
+  padding-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.date {
+  text-align: right;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
   </style>
 </head>
 <body>
-  <div class="paper">
-    <div class="title">
-      <div class="small">僕から見た君の</div>
-      <div class="main">人生年表</div>
-    </div>
-    <div class="dashed-line"></div>
-    <div class="label-row">
-      <div>年齢</div><div>出来事</div>
-    </div>
-    <div class="timeline">
-      ${timelineItems}
-    </div>
-    <div class="date">発行日時：${today}</div>
-    <div class="footer">
-      僕の予想は正しかったかな？<br />
-      君の人生と比べてみて！
-    </div>
+  <div class="title">
+    <div class="small">僕から見た君の</div>
+    <div class="main">人生年表</div>
   </div>
+  <div class="dashed-line"></div>
+  <div class="label-row">
+    <div>年齢</div><div>出来事</div>
+  </div>
+  <div class="timeline">
+    ${timelineItems}
+  </div>
+  <div class="date">発行日時：${today}</div>
+  <div class="footer">
+    僕の予想は正しかったかな？<br />
+    君の人生と比べてみて！
+  </div>
+</body>
 <script>
   window.onload = function() {
     const scrollStep = 1; // 1フレームで下がるpx数（小さいほど遅い）
