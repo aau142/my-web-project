@@ -3,14 +3,12 @@ import frameImg from './nenp.png'; // パスは適宜修正
 
 const SevenMac = ({ url }) => {
   return (
-    <div style={{
-      position: 'relative',
-    width: '100%',
-    height: '100%',
-      backgroundColor: 'black',
-      fontFamily: 'DotGothic16',
-      overflow: 'hidden',
-    }}
+      <div style={styles.right}>
+        <img src={frameImg} alt="生成中フレーム" style={styles.Frame} />
+      </div>
+    </div>
+  );
+};
 const styles = {
   root: {
     display: 'flex',
