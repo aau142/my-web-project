@@ -4,6 +4,7 @@ import arrow from './arrow.png';
 import onBtn from './on.png';
 import offBtn from './off.png';
 
+
 const Camera = () => {
   const navigate = useNavigate();
   const [pressed, setPressed] = useState('');
@@ -104,7 +105,7 @@ const Camera = () => {
   right: '60px',
   textAlign: 'center'
 }}>
-  <img src={offIcon} alt="OFF" style={{ width: '120px' }} />
+  <img src={offBtn} alt="OFF" style={{ width: '120px' }} />
   <div style={{ fontSize: '24px', fontWeight: 'bold' }}>OFF</div>
 </div>
 
