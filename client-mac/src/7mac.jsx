@@ -1,18 +1,25 @@
 import React from 'react';
-import frameImg from './nenp.png'; // 適宜修正
+import frameImg from './nenp.png'; // フレーム画像のパス
 
 const SevenMac = ({ url }) => {
   return (
     <div style={styles.root}>
+      {/* 左側：動画エリア */}
       <div style={styles.left}>
-        {/* 必要に応じて動画などを追加 */}
+        <video
+          src="/movie.mp4"
+          style={styles.video}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
       </div>
 
+      {/* 右側：フレーム画像＋iframe年表 */}
       <div style={styles.right}>
-        {/* 背景フレーム画像 */}
         <img src={frameImg} alt="生成中フレーム" style={styles.genFrame} />
 
-        {/* 埋め込みiframe */}
         <iframe
           src={url}
           title="年表"
