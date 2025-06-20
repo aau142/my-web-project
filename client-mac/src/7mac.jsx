@@ -1,5 +1,5 @@
 import React from 'react';
-import frameImg from './ew.png'; // パスは適宜修正
+import frameImg from './nenp.png'; // パスは適宜修正
 
 const SevenMac = ({ url }) => {
   return (
@@ -34,7 +34,7 @@ const SevenMac = ({ url }) => {
           left: '53%',
           transform: 'translate(-50%, -50%)',
           width: '60%',
-          height: '60%',
+          height: '40%',
           border: 'none',
           background: 'white',
           zIndex: 1,
