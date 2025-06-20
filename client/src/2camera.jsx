@@ -102,11 +102,12 @@ const Camera = () => {
 <div style={{
   position: 'absolute',
   bottom: '80px',
-  right: '60px',
+  right: '50px',
   textAlign: 'center'
 }}>
-  <img src={offBtn} alt="OFF" style={{ width: '120px' }} />
-  <div style={{ fontSize: '24px', fontWeight: 'bold' }}>OFF</div>
+  <img src={offBtn} alt="OFF" style={{ width: '200px' }}
+    onTouchStart={() => handleTap('on', '/3chui')}
+        />
 </div>
 
       
