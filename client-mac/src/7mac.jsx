@@ -30,7 +30,7 @@ const SevenMac = ({ url }) => {
         title="年表"
         style={{
           position: 'absolute',
-          top: '52%',           // 位置微調整（画像中央のグレー枠に合わせて）
+          top: '42%',           // 位置微調整（画像中央のグレー枠に合わせて）
           left: '53%',
           transform: 'translate(-50%, -50%)',
           width: '60%',
