@@ -122,7 +122,7 @@ const Camera = () => {
         width: '813px',
         height: '70px',
         left: 'calc(50% - 813px/2)',
-        top: '909px',
+        top: '929px',
         fontWeight: 500,
         fontSize: '48px',
         lineHeight: '70px',
