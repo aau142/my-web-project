@@ -24,19 +24,19 @@ const JinseiNempyo = ({ timelineText }) => {
 };
 
 const styles = {
-  container: {
-    backgroundColor: 'black',
-    color: 'white',
-    fontFamily: 'DotGothic16, sans-serif',
-    height: '100vh',
-    width: '100vw',
-    position: 'relative',
-   paddingTop: '40px',
-paddingRight: '40px',
-paddingLeft: '40px',
-paddingBottom: '0px',
-    boxSizing: 'border-box',
-  },
+container: {
+  backgroundColor: 'black',
+  color: 'white',
+  fontFamily: 'DotGothic16, sans-serif',
+  height: '100vh',
+  width: '100vw',
+  position: 'relative',
+  paddingTop: '40px',
+  paddingRight: '40px',
+  paddingLeft: '40px',
+  paddingBottom: '0px', // 👈 ここ重要！
+  boxSizing: 'border-box',
+},
   titleContainer: {
     textAlign: 'center',
     marginBottom: '20px',
@@ -74,7 +74,7 @@ paddingBottom: '0px',
   },
   footerText: {
     position: 'absolute',
-    bottom: '40px',
+    bottom: '20px',
     width: '100%',
     textAlign: 'center',
     fontSize: '25px',
