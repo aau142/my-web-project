@@ -128,14 +128,15 @@ body {
 }
 
 .entry .age {
-  width: 80px;
+  width: 60px;
   font-weight: bold;
   text-align: left;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .entry .desc {
   flex: 1;
+  padding-left: 0px;
 }
 
 .footer {
