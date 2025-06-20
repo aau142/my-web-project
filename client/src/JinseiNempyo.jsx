@@ -3,62 +3,19 @@ import './DotGothic16-Regular.ttf';
 
 const JinseiNempyo = ({ timelineText }) => {
   return (
-    <div style={styles.container}>
-      <div style={styles.titleContainer}>
-        <div style={styles.subTitle}>僕から見た君の</div>
-        <div style={styles.mainTitle}>人生年表</div>
-      </div>
-
-      <div style={styles.timelineBox}>
-        <div style={styles.timelineText}>
-          {timelineText || 'ここにOpenAIからの人生年表テキストが入ります'}
-        </div>
-      </div>
-
-      <div style={styles.footerText}>
-        僕の分析は正しかったかな？<br />
-        君の人生と比べてみて！
+    <div style={styles.timelineBox}>
+      <div style={styles.timelineText}>
+        {timelineText || 'ここにOpenAIからの人生年表テキストが入ります'}
       </div>
     </div>
   );
 };
 
 const styles = {
-container: {
-  backgroundColor: 'black',
-  color: 'white',
-  fontFamily: 'DotGothic16, sans-serif',
-  height: '100vh',
-  width: '100vw',
-  position: 'relative',
-  paddingTop: '40px',
-  paddingRight: '40px',
-  paddingLeft: '40px',
-  paddingBottom: '0px', // 👈 ここ重要！
-  boxSizing: 'border-box',
-},
-  titleContainer: {
-    textAlign: 'center',
-    marginBottom: '20px',
-  },
-  subTitle: {
-    fontSize: '20px',
-  },
-  mainTitle: {
-    fontSize: '48px',
-    fontWeight: 'bold',
-    color: '#ffcc66',
-    textShadow: `
-      -1px -1px 0 #66ccff,  
-      1px -1px 0 #66ccff,
-      -1px 1px 0 #66ccff,
-      1px 1px 0 #66ccff
-    `,
-  },
   timelineBox: {
+    width: '100%',
+    maxWidth: '800px',
     margin: '0 auto',
-    width: '70%',
-    height: '50vh',
     backgroundColor: '#d9d9d9',
     borderRadius: '10px',
     border: '2px solid #99ccff',
@@ -66,19 +23,12 @@ container: {
     boxSizing: 'border-box',
     overflowY: 'auto',
     color: 'black',
+    fontFamily: 'DotGothic16, sans-serif',
   },
   timelineText: {
     whiteSpace: 'pre-line',
     fontSize: '16px',
     lineHeight: '1.6',
-  },
-  footerText: {
-    position: 'absolute',
-    bottom: '20px',
-    width: '120%',
-    textAlign: 'center',
-    fontSize: '20px',
-    color: 'white',
   },
 };
 
