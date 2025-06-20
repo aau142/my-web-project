@@ -74,7 +74,7 @@ const styles = {
     bottom: '40px',
     width: '100%',
     textAlign: 'center',
-    fontSize: '18px',
+    fontSize: '25px',
     color: 'white',
   },
 };
