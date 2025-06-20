@@ -79,7 +79,7 @@ const Camera = () => {
       {/* ON / OFF ボタン */}
       <div style={{
         position: 'absolute',
-              top: '607px',
+              top: '557px',
   left: '50%',
   transform: 'translateX(-50%)',
   width: 'auto',
@@ -90,7 +90,7 @@ const Camera = () => {
     src={onBtn}
     alt="on"
     style={{
-      width: '300px',   // 好きなサイズに調整（ここを大きくする）
+      width: '350px',   // 好きなサイズに調整（ここを大きくする）
       height: 'auto',
       cursor: 'pointer',
       ...getStyle('on')
