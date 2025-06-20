@@ -79,7 +79,7 @@ const Camera = () => {
       {/* ON / OFF ボタン */}
       <div style={{
         position: 'absolute',
-              top: '700px',
+              top: '550px',
   left: '50%',
   transform: 'translateX(-50%)',
   width: 'auto',
