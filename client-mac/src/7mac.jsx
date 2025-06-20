@@ -1,14 +1,40 @@
 import React from 'react';
-import frameImg from './nenp.png'; // パスは適宜修正
+import frameImg from './nenp.png'; // 適宜修正
 
 const SevenMac = ({ url }) => {
   return (
+    <div style={styles.root}>
+      <div style={styles.left}>
+        {/* 必要に応じて動画などを追加 */}
+      </div>
+
       <div style={styles.right}>
-        <img src={frameImg} alt="生成中フレーム" style={styles.Frame} />
+        {/* 背景フレーム画像 */}
+        <img src={frameImg} alt="生成中フレーム" style={styles.genFrame} />
+
+        {/* 埋め込みiframe */}
+        <iframe
+          src={url}
+          title="年表"
+          style={{
+            position: 'absolute',
+            top: '42%',
+            left: '53%',
+            transform: 'translate(-50%, -50%)',
+            width: '60%',
+            height: '50%',
+            border: 'none',
+            background: 'white',
+            zIndex: 1,
+            borderRadius: '8px',
+            overflow: 'hidden',
+          }}
+        />
       </div>
     </div>
   );
 };
+
 const styles = {
   root: {
     display: 'flex',
@@ -31,36 +57,13 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'black', // ←これ重要！
+    background: 'black',
   },
-    genFrame: {
+  genFrame: {
     width: '100%',
     height: 'auto',
     objectFit: 'contain',
-        },
-};
-      />
-
-      {/* iframe を適切な位置に */}
-      <iframe
-        src={url}
-        title="年表"
-        style={{
-          position: 'absolute',
-          top: '42%',           // 位置微調整（画像中央のグレー枠に合わせて）
-          left: '53%',
-          transform: 'translate(-50%, -50%)',
-          width: '60%',
-          height: '50%',
-          border: 'none',
-          background: 'white',
-          zIndex: 1,
-          borderRadius: '8px',
-          overflow: 'hidden'
-        }}
-      />
-    </div>
-  );
+  },
 };
 
 export default SevenMac;
