@@ -75,7 +75,7 @@ container: {
   footerText: {
     position: 'absolute',
     bottom: '20px',
-    width: '100%',
+    width: '120%',
     textAlign: 'center',
     fontSize: '20px',
     color: 'white',
