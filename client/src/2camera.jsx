@@ -109,8 +109,8 @@ const Camera = () => {
   <img src={offBtn} alt="OFF" style={{
             width: '200px' , 
             cursor: 'pointer',
-            ...getStyle('on')}}
-    onTouchStart={() => handleTap('on', '/3danjo')}
+            ...getStyle('off')}}
+    offTouchStart={() => handleTap('off', '/3danjo')}
         />
 </div>
 
