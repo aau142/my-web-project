@@ -65,7 +65,7 @@ const Camera = () => {
         width: '774px',
         height: '116px',
         left: 'calc(50% - 774px / 2)',
-        top: '384px',
+        top: '304px',
         fontWeight: 1000,
         fontSize: '80px',
         lineHeight: '116px',
@@ -79,9 +79,9 @@ const Camera = () => {
       {/* ON / OFF ボタン */}
       <div style={{
         position: 'absolute',
-        width: '661.6px',
-        height: '251px',
-        left: 'calc(50% - 661.6px/2)',
+        width: '711.6px',
+        height: '301px',
+        left: 'calc(50% - 711.6px/2)',
         top: '607px',
         display: 'flex',
         justifyContent: 'space-between'
