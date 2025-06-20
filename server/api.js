@@ -69,14 +69,14 @@ ${inputText}`;
   <title>人生年表</title>
   <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 40px 0;
-      background: #000000;
-      font-family: 'DotGothic16', sans-serif;
-      display: flex;
-      justify-content: center;
-    }
+  body {
+    margin: 0;
+    padding: 40px 0;
+    font-family: 'DotGothic16', sans-serif;
+    display: flex;
+    justify-content: center;
+  }
+
     .paper {
       background: white;
       width: 620px;
