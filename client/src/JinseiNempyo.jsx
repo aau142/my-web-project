@@ -74,10 +74,10 @@ container: {
   },
   footerText: {
     position: 'absolute',
-    bottom: '20px',
+    bottom: '10px',
     width: '100%',
     textAlign: 'center',
-    fontSize: '25px',
+    fontSize: '20px',
     color: 'white',
   },
 };
