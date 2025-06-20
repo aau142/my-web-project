@@ -42,6 +42,7 @@ export async function analyzeText(inputText, id) {
 ...
 
 ※年表以外の情報や説明は一切不要です。
+※必ず形式は守ってください。
 ${inputText}`;
 
   const completion = await openai.chat.completions.create({
@@ -236,8 +237,8 @@ export async function analyzeImageBuffer(imageBuffer) {
           {
             type: "text",
             text: `
-画像を見て分かる特徴を取得してください。
-その情報をもとに、想像される年齢までの人生年表を予想して書いてください。
+画像を見て分かる特徴を具体的に取得してください。
+その情報を元に、想像される年齢までの人生年表を情報に沿って予想して書いてください。
 絶対にユーモアを交え、人を傷つけない表現にしてください。
 
 書き方は以下の形式にしてください：
@@ -248,7 +249,8 @@ export async function analyzeImageBuffer(imageBuffer) {
 3　　　　...
 ...
 
-※年表以外の情報や説明は一切不要です。
+※年表以外の情報や説明は絶対に一切不要です。
+※必ず形式は守ってください。
 `
           }
         ],
