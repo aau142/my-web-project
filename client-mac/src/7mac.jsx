@@ -10,18 +10,37 @@ const SevenMac = ({ url }) => {
       backgroundColor: 'black',
       fontFamily: 'DotGothic16',
       overflow: 'hidden',
-    }}>
-      {/* フレーム画像（吹き出し） */}
-      <img
-        src={frameImg}
-        alt="フレーム"
-        style={{
-          position: 'absolute',
+    }}
+const styles = {
+  root: {
+    display: 'flex',
+    width: '100vw',
+    height: '100vh',
+    background: 'black',
+  },
+  left: {
+    flex: 1,
+    background: 'black',
+  },
+  video: {
     width: '100%',
     height: '100%',
-          objectFit: 'contain',
-          zIndex: 0,
-        }}
+    objectFit: 'cover',
+  },
+  right: {
+    flex: 1,
+    position: 'relative',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    background: 'black', // ←これ重要！
+  },
+    genFrame: {
+    width: '100%',
+    height: 'auto',
+    objectFit: 'contain',
+        },
+};
       />
 
       {/* iframe を適切な位置に */}
