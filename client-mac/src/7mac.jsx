@@ -29,7 +29,7 @@ const SevenMac = ({ url }) => {
             left: '53%',
             transform: 'translate(-50%, -50%)',
             width: '60%',
-            height: '70%',
+            height: '60%',
             border: 'none',
             background: 'white',
             zIndex: 1,
