@@ -112,7 +112,7 @@ body {
 .label-row div:last-child {
   flex: 1;
   text-align: right;
-  padding-right: 200px;
+  padding-right: 100px;
 }
 
 .timeline {
