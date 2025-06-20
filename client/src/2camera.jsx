@@ -65,7 +65,7 @@ const Camera = () => {
         width: '774px',
         height: '116px',
         left: 'calc(50% - 774px / 2)',
-        top: '304px',
+        top: '274px',
         fontWeight: 1000,
         fontSize: '80px',
         lineHeight: '116px',
@@ -79,25 +79,26 @@ const Camera = () => {
       {/* ON / OFF ボタン */}
       <div style={{
         position: 'absolute',
-        width: '711.6px',
-        height: '301px',
-        left: 'calc(50% - 711.6px/2)',
-        top: '607px',
-        display: 'flex',
-        justifyContent: 'space-between'
-      }}>
-        <img
-          src={onBtn}
-          alt="on"
-          style={{
-            width: '235.99px',
-            height: '251px',
-            cursor: 'pointer',
-            ...getStyle('on')
-          }}
-          onTouchStart={() => handleTap('on', '/3chui')}
-        />
-        </div>
+              top: '607px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  width: 'auto',
+  height: 'auto',
+  textAlign: 'center'
+}}>
+  <img
+    src={onBtn}
+    alt="on"
+    style={{
+      width: '300px',   // 好きなサイズに調整（ここを大きくする）
+      height: 'auto',
+      cursor: 'pointer',
+      ...getStyle('on')
+    }}
+    onTouchStart={() => handleTap('on', '/3chui')}
+  />
+</div>
+      
 {/* カメラOFFアイコン */}
 <div style={{
   position: 'absolute',
@@ -105,7 +106,10 @@ const Camera = () => {
   right: '50px',
   textAlign: 'center'
 }}>
-  <img src={offBtn} alt="OFF" style={{ width: '200px' }}
+  <img src={offBtn} alt="OFF" style={{
+            width: '200px' , 
+            cursor: 'pointer',
+            ...getStyle('on')}}
     onTouchStart={() => handleTap('on', '/3chui')}
         />
 </div>
@@ -118,7 +122,7 @@ const Camera = () => {
         width: '813px',
         height: '70px',
         left: 'calc(50% - 813px/2)',
-        top: '979px',
+        top: '909px',
         fontWeight: 500,
         fontSize: '48px',
         lineHeight: '70px',
