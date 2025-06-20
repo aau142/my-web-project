@@ -110,7 +110,7 @@ const Camera = () => {
             width: '200px' , 
             cursor: 'pointer',
             ...getStyle('off')}}
-    offTouchStart={() => handleTap('off', '/3danjo')}
+    onTouchStart={() => handleTap('off', '/3danjo')}
         />
 </div>
 
