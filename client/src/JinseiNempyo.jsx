@@ -31,7 +31,10 @@ const styles = {
     height: '100vh',
     width: '100vw',
     position: 'relative',
-    padding: '40px',
+   paddingTop: '40px',
+paddingRight: '40px',
+paddingLeft: '40px',
+paddingBottom: '0px',
     boxSizing: 'border-box',
   },
   titleContainer: {
