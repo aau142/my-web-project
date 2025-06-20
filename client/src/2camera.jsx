@@ -15,7 +15,7 @@ const Camera = () => {
     audio.currentTime = 0;
     audio.play();
   };
-  
+
   const handleTap = (target, route) => {
     playClick();
     setPressed(target);
