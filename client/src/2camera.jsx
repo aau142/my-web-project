@@ -96,18 +96,19 @@ const Camera = () => {
           }}
           onTouchStart={() => handleTap('on', '/3chui')}
         />
-        <img
-          src={offBtn}
-          alt="off"
-          style={{
-            width: '235.99px',
-            height: '251px',
-            cursor: 'pointer',
-            ...getStyle('off')
-          }}
-          onTouchStart={() => handleTap('off', '/3danjo')}
-        />
-      </div>
+        </div>
+{/* カメラOFFアイコン */}
+<div style={{
+  position: 'absolute',
+  bottom: '80px',
+  right: '60px',
+  textAlign: 'center'
+}}>
+  <img src={offIcon} alt="OFF" style={{ width: '120px' }} />
+  <div style={{ fontSize: '24px', fontWeight: 'bold' }}>OFF</div>
+</div>
+
+      
 
       {/* 注意文 */}
       <div style={{
