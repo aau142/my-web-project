@@ -25,7 +25,7 @@ const SevenMac = ({ url }) => {
           title="年表"
           style={{
             position: 'absolute',
-            top: '42%',
+            top: '52%',
             left: '53%',
             transform: 'translate(-50%, -50%)',
             width: '60%',
